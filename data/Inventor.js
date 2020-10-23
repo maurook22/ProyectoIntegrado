@@ -14,7 +14,7 @@ async function getAllInventors(){
     //return await readMocInventor();
     const connectionMongo = await connection.getConnection();
 
-    const inventors = await connectionMongo.db('sample_tp2')
+    const inventors = await connectionMongo.db('DB')
                         .collection('inventors')
                         .find()
                         .toArray();
@@ -27,7 +27,7 @@ async function getInventor(id){
     // const inventor = data.inventors.find(inventor => inventor._id == id);
     // return inventor;
     const connectionMongo = await connection.getConnection();
-    const inventor = await connectionMongo.db('sample_tp2')
+    const inventor = await connectionMongo.db('DB')
                         .collection('inventors')
                         .findOne({_id: parseInt(id) });
     return inventor;
@@ -38,7 +38,7 @@ async function pushInventor(inventor){
     // data.inventors.push(inventor);
     // await writeMocInventor(data);
     const connectionMongo = await connection.getConnection();
-    const result = await connectionMongo.db('sample_tp2')
+    const result = await connectionMongo.db('DB')
                         .collection('inventors')
                         .insertOne(inventor);
     return result;
@@ -52,7 +52,7 @@ async function updateInventor(inventor){
             first: inventor.first, last: inventor.last, year: inventor.year, img: inventor.img
         }
     }
-    const result = await connectionMongo.db('sample_tp2')
+    const result = await connectionMongo.db('DB')
                         .collection('inventors')
                         .updateOne(query, newvalues);
     return result;
@@ -60,7 +60,7 @@ async function updateInventor(inventor){
 
 async function deleteInventor(id){
     const connectionMongo = await connection.getConnection();
-    const result = await connectionMongo.db('sample_tp2')
+    const result = await connectionMongo.db('DB')
                     .collection('inventors')
                     .deleteOne({_id: parseInt(id)});
     return result;
