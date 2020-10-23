@@ -15,30 +15,7 @@
                     </div>
                 </div>    
             </div>
-
-            <!--<div class="row">
-                <div class="btn-group col-md-2 offset-md-5">
-
-                    <button 
-                        type="button"
-                        @click="page--"
-                        v-if="page > 1"
-                        class="btn btn-sm btn-outline-secondary">
-                        Anterior
-                    </button>
-
-                    <button
-                        type="button"
-                        @click="page++"
-                        v-if="page < pages.length"
-                        class="btn btn-sm btn-outline-secondary">
-                        Siguiente
-                    </button>
-
-                </div>
-
-            </div>-->
-
+            
         </div>
     </div>
   </section>
@@ -56,13 +33,14 @@
     data () {
       return {
         productos: [],
-        baseURL: 'http://localhost:3000/'
+        baseURL: 'http://localhost:3000/',
+        endpoint: 'products'
       }
     },
     methods: {
       
       async getArticles(){
-            await this.axios.get(`${this.baseURL}products`)
+            await this.axios.get(`${this.baseURL}${this.endpoint}`)
                             .then(res => this.productos = res.data)
                             .catch(err => console.log(err, 'Error al buscar los productos'))
       }
